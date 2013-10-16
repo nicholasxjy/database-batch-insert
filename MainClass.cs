@@ -34,6 +34,7 @@ namespace BatchInsert
 				conn.Close();
 			}
 		}
+		//there are some variables not defined ,you can just replace them according your project
 		public static void Main (string[] args)
 		{
 			DataTable dt = new DataTable ("BatchInsert");
@@ -41,11 +42,15 @@ namespace BatchInsert
 			dt.Columns.Add ("Name");
 			dt.Columns.Add ("Age");
 			//assuming that every 1000 records at a time inserting
-			for (int i=0; i<1000; i++) {
-				GetDataTableInsert(model,dt);
+			for(int i=0;i<modelList.Count;i++)
+			{
+				for (int j=0; j<1000; j++)
+				{
+					GetDataTableInsert(model,dt);
+				}
+				
+				DBatchInsert(dt);
 			}
-
-			DBatchInsert(dt);
 			Console.WriteLine("Dude,work done!");
 		}
 	}
